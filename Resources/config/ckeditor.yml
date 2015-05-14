@@ -1,0 +1,8 @@
+trsteel_ckeditor:
+    format_tags: ['h2', 'h3', 'p']
+    toolbar: ['basicstyles', 'paragraph', 'links', 'styles']
+    toolbar_groups:
+        basicstyles: ['Bold','Italic']
+        paragraph: ['BulletedList']
+        links: ['Link','Unlink']
+        styles: ['Format']

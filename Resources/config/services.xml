@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service
+                id="origammi_blocks.blocks_container"
+                class="Origammi\Bundle\BlocksBundle\BlocksContainer">
+        </service>
+
+        <service
+                id="origammi_blocks.annotation.blocks_converter"
+                class="Origammi\Bundle\BlocksBundle\Annotation\Conversion\BlocksConverter"
+                >
+            <argument id="annotation_reader" type="service"/>
+        </service>
+
+        <service
+                id="origammi_blocks.form.event.default_block_populator"
+                class="Origammi\Bundle\BlocksBundle\Form\Event\DefaultBlockPopulator"
+                >
+            <argument id="origammi_blocks.annotation.blocks_converter" type="service"/>
+            <argument id="origammi_blocks.blocks_container" type="service"/>
+        </service>
+        <service
+                id="origammi_blocks.form.event.allowed_blocks_injector"
+                class="Origammi\Bundle\BlocksBundle\Form\Event\AllowedBlocksInjector"
+                >
+            <argument id="origammi_blocks.annotation.blocks_converter" type="service"/>
+            <argument id="origammi_blocks.blocks_container" type="service"/>
+        </service>
+        <service
+                id="origammi_blocks.form.event.block_sorter"
+                class="Origammi\Bundle\BlocksBundle\Form\Event\BlockSorter"
+                >
+        </service>
+
+
+        <!-- Block collection type -->
+        <service
+                id="origammi_blocks.form.type.block_collection"
+                class="Origammi\Bundle\BlocksBundle\Form\Type\BlockCollectionType">
+
+            <argument id="origammi_blocks.form.event.default_block_populator" type="service"/>
+            <argument id="origammi_blocks.blocks_container" type="service"/>
+            <argument id="origammi_blocks.form.event.allowed_blocks_injector" type="service"/>
+            <argument id="origammi_blocks.form.event.block_sorter" type="service"/>
+
+            <tag name="form.type" alias="origammi_blocks" />
+        </service>
+
+        <!-- Block types -->
+        <service
+                id="origammi_blocks.form.block.default"
+                class="Origammi\Bundle\BlocksBundle\Form\BlockDefaultType">
+
+            <tag name="form.type" alias="origammi_block_default" />
+        </service>
+        <service
+                id="origammi_blocks.form.block.text"
+                class="Origammi\Bundle\BlocksBundle\Form\Block\TextType">
+
+            <tag name="origammi_blocks.block" />
+        </service>
+        <service
+                id="origammi_blocks.form.block.lead"
+                class="Origammi\Bundle\BlocksBundle\Form\Block\LeadType">
+
+            <tag name="origammi_blocks.block" />
+        </service>
+        <service
+                id="origammi_blocks.form.block.quote"
+                class="Origammi\Bundle\BlocksBundle\Form\Block\QuoteType">
+
+            <tag name="origammi_blocks.block" />
+        </service>
+        <service
+                id="origammi_blocks.form.block.image"
+                class="Origammi\Bundle\BlocksBundle\Form\Block\ImageType">
+
+            <tag name="origammi_blocks.block" />
+        </service>
+    </services>
+</container>

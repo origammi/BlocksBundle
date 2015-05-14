@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="de" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="origammi_block_lead">
+                <source>origammi_block_lead</source>
+                <target>Lead</target>
+            </trans-unit>
+            <trans-unit id="origammi_block_text">
+                <source>origammi_block_text</source>
+                <target>Text</target>
+            </trans-unit>
+            <trans-unit id="origammi_block_quote">
+                <source>origammi_block_quote</source>
+                <target>Zitat</target>
+            </trans-unit>
+            <trans-unit id="origammi_block_image">
+                <source>origammi_block_image</source>
+                <target>Bild</target>
+            </trans-unit>
+            <trans-unit id="Caption">
+                <source>Caption</source>
+                <target>Legende</target>
+            </trans-unit>
+            <trans-unit id="Image">
+                <source>Image</source>
+                <target>Bild</target>
+            </trans-unit>
+            <trans-unit id="Blocks">
+                <source>Blocks</source>
+                <target>Blöcke</target>
+            </trans-unit>
+            <trans-unit id="add.block">
+                <source>add.block</source>
+                <target>Block hinzufügen</target>
+            </trans-unit>
+            <trans-unit id="select">
+                <source>select</source>
+                <target>Wählen...</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

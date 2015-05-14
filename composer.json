@@ -1,0 +1,53 @@
+{
+  "name":        "origammi/blocks-bundle",
+  "type":        "symfony-bundle",
+  "description": "Symfony2 bundle for adding collection of different block to any entity.",
+  "keywords":    ["blocks", "cms", "symfony", "bundle", "twig"],
+  "homepage":    "https://github.com/origammi/BlocksBundle",
+  "license":     "MIT",
+
+  "authors": [
+    {
+      "name": "Origammi",
+      "homepage": "https://github.com/origammi"
+    }
+  ],
+
+  "require": {
+    "php": ">=5.3.3",
+
+    "infinite-networks/form-bundle": "1.0.*@alpha",
+    "Trsteel/ckeditor-bundle": "~1.6"
+  },
+
+  "require-dev": {
+    "phpunit/phpunit": "~4.3",
+    "squizlabs/php_codesniffer": "~2.0",
+    "phpmd/phpmd": "~2.1",
+    "sebastian/phpcpd": "~2.0",
+
+    "symfony/symfony": "~2.3",
+    "sensio/framework-extra-bundle": "~2.3"
+  },
+
+  "autoload": {
+    "psr-0": {
+      "Origammi\\Bundle\\BlocksBundle": ""
+    }
+  },
+
+  "target-dir": "Origammi/Bundle/BlocksBundle",
+
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+
+  "config": {
+    "bin-dir": "bin"
+  },
+
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{% trans_default_domain "blocks" %}
+
+{% block origammi_block_default_widget %}
+    <div class="block">
+        <strong class="{{ form.vars.required ? 'required' }}">
+            {{ form.vars.block_prefixes[2] | trans }}
+        </strong>
+        <a href="#" class="remove-block">
+            <i class="fa fa-trash"></i>
+        </a>
+        {{ form_widget(form) }}
+    </div>
+{% endblock %}
+
+{% block origammi_blocks_widget %}
+    {% spaceless %}
+        <div class="blocks-container">
+            <div class="blocks">
+                {% for child in form.blocks %}
+                    {{ form_widget(child) }}
+                {% endfor %}
+            </div>
+
+            {#TODO: make configurable #}
+            <div class="add-block-holder">
+                <strong>
+                    {{ 'add.block' | trans }}
+                </strong>
+                <select name="add-block" class="add-block selectpicker form-control" title="Add block">
+                    <option>{{ 'select' | trans }}</option>
+                    {% for name, prototype in form.blocks.vars.prototypes %}
+                        <option value="{{ form_widget(prototype)|e }}">{{ name | trans }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+    {% endspaceless %}
+{% endblock %}
