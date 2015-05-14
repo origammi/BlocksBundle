@@ -1,24 +1,22 @@
-"use strict";
+'use strict';
 
 (function($) {
-    var removeBlockButtons = $('.remove-block');
-    var addBlockDropDown   = $('.add-block');
+    var addBlockDropDowns  = $('.add-block');
 
-    var removeBlock = function(e) {
-        e.preventDefault();
+    var removeBlock = function() {
+        var $this = $(this);
 
         // TODO: translations
         if (confirm('Are you sure you want to remove that block?')) {
-            if (this.parentNode.className === 'block') {
-                var block = this.parentNode;
-
-                block.parentNode.removeChild(block);
+            if ($this.parent().hasClass('block')) {
+                $this.parent().remove();
             }
         }
     };
 
     var addBlock = function(e) {
         e.preventDefault();
+
         var dropDown       = $(e.target);
         var blocks         = dropDown.parent().prev();
         var nextBlockIndex = blocks.children().length;
@@ -30,9 +28,6 @@
         dropDown.prop('selectedIndex', 0);
     };
 
-    for (var i=0; i<removeBlockButtons.length; i++) {
-        removeBlockButtons[i].addEventListener('click', removeBlock, false);
-    }
-
-    addBlockDropDown.on('change', addBlock);
+    addBlockDropDowns.on('change', addBlock);
+    $('body').on('click', '.remove-block', removeBlock);
 })(jQuery);
