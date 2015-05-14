@@ -61,14 +61,6 @@ class BlockCollectionType extends AbstractType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('blocks', 'infinite_form_polycollection', [
-            'allow_add'    => true,
-            'allow_delete' => true,
-            'by_reference' => false,
-            'label'        => false,
-            'types'        => $this->blocksContainer->getBlockTypeNames()
-        ]);
-
         $builder->addEventSubscriber($this->blockPopulator);
         $builder->addEventSubscriber($this->allowedBlocksInjector);
         $builder->addEventSubscriber($this->blockSorter);
