@@ -50,11 +50,6 @@ class AllowedBlocksInjector implements EventSubscriberInterface
      */
     public function onPreSetData(FormEvent $event)
     {
-        // if there is data, we are editing, so we don't need to set up default blocks
-        if ($event->getData()) {
-            return;
-        }
-
         $parentForm           = $event->getForm()->getParent();
         $propertyName         = $event->getForm()->getConfig()->getName();
         $blockCollectionData  = $this->blocksConverter->convert($parentForm->getData());
