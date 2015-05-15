@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Text extends Block
 {
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
@@ -27,7 +27,15 @@ class Text extends Block
     private $text;
 
     /**
-     * @return string
+     * @param string $text
+     */
+    public function __construct($text = null)
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * @return string|null
      */
     public function getText()
     {
