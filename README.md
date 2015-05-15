@@ -1,6 +1,13 @@
 # Origammi Blocks Bundle
 
+[![Build Status](https://travis-ci.org/origammi/BlocksBundle.svg?branch=master)](https://travis-ci.org/origammi/BlocksBundle)
+
+
 ## Usage
+
+### Requirements
+
+* PHP 5.4+
 
 ### Register bundle
 
