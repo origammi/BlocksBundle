@@ -141,7 +141,7 @@ class BlockCollectionData
      */
     private function prefixBlocks(array $blocks)
     {
-        $prefixed = array();
+        $prefixed = [];
 
         foreach ($blocks as $name) {
             $prefixed[] = BlockType::BLOCK_PREFIX . $name;

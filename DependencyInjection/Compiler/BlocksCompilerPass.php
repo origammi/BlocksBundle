@@ -2,7 +2,6 @@
 
 namespace Origammi\Bundle\BlocksBundle\DependencyInjection\Compiler;
 
-
 use Origammi\Bundle\BlocksBundle\Form\BlockType;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -36,13 +35,11 @@ class BlocksCompilerPass implements CompilerPassInterface
             }
 
             // every block is also a form type, for simplicity we add tags here, instead in service definition
-            $blockDefinition->addTag('form.type', array('alias' => $formType->getName()));
+            $blockDefinition->addTag('form.type', ['alias' => $formType->getName()]);
 
             $definition->addMethodCall(
                 'addBlockType',
-                array(
-                    new Reference($id)
-                )
+                [ new Reference($id) ]
             );
         }
     }
