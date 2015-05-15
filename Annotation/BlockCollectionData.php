@@ -1,6 +1,7 @@
 <?php
 
 namespace Origammi\Bundle\BlocksBundle\Annotation;
+
 use Origammi\Bundle\BlocksBundle\Form\BlockType;
 
 /**
@@ -11,7 +12,7 @@ use Origammi\Bundle\BlocksBundle\Form\BlockType;
  * @copyright 2015 Astina AG (http://astina.ch)
  *
  * @Annotation
- * TOOD: annotation validation
+ * @Target({"PROPERTY"})
  */
 class BlockCollectionData
 {
@@ -21,21 +22,24 @@ class BlockCollectionData
     private $propertyName;
 
     /**
-     * @var array
+     * @var array<string>
      */
     private $defaults;
 
     /**
-     * @var array
+     * @var array<string>
      */
     private $allowed;
 
     /**
-     * @var array
+     * @var array<string>
      */
     private $required;
 
-    public function __construct($options)
+    /**
+     * @param array $options
+     */
+    public function __construct(array $options)
     {
         foreach ($options as $key => $value) {
             if (! property_exists($this, $key)) {
