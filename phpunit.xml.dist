@@ -30,7 +30,7 @@
     </filter>
 
     <php>
-        <server name="KERNEL_DIR" value="Test/app/" />
+        <server name="KERNEL_DIR" value="Test/Application/app/" />
     </php>
 
     <logging>

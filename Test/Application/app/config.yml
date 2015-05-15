@@ -1,0 +1,17 @@
+imports:
+    - { resource: parameters.yml }
+
+framework:
+  secret: OmgItIsASecretOfThisBundleTest
+  test:   ~
+
+doctrine:
+  dbal:
+    driver:   %database_driver%
+    host:     %database_host%
+    port:     %database_port%
+    path:     %database_path%
+    dbname:   %database_name%
+    user:     %database_user%
+    password: %database_password%
+    charset:  UTF8
