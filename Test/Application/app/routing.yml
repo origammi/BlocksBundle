@@ -1,0 +1,5 @@
+test_website:
+    resource: "@OrigammiBlocksBundle/Test/Application/Controller/"
+    type:     annotation
+    prefix:   /
+

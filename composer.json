@@ -19,7 +19,11 @@
     "infinite-networks/form-bundle": "1.0.*@alpha",
     "Trsteel/ckeditor-bundle": "~1.6",
     "knplabs/doctrine-behaviors": "~1.0",
-    "doctrine/doctrine-bundle": "~1.2"
+
+    "doctrine/orm": "~2.2,>=2.2.3,<2.5",
+    "doctrine/dbal": "<2.5",
+    "doctrine/doctrine-bundle": "~1.2",
+    "vich/uploader-bundle": "~0.14"
   },
 
   "require-dev": {
@@ -29,7 +33,9 @@
     "sebastian/phpcpd": "~2.0",
 
     "symfony/symfony": "~2.3",
-    "sensio/framework-extra-bundle": "~2.3"
+    "sensio/framework-extra-bundle": "~2.3",
+    "liip/functional-test-bundle": "~1.2",
+    "doctrine/doctrine-fixtures-bundle": "~2.2"
   },
 
   "autoload": {

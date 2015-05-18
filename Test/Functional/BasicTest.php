@@ -2,12 +2,12 @@
 
 namespace Origammi\Bundle\BlocksBundle\Test\Functional;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class BasicTest extends WebTestCase
+class BasicTest extends BaseTest
 {
     public function testSimple()
     {
-        $client = static::createClient();
+        $this->client->request('GET', '/');
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 }

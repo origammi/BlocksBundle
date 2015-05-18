@@ -10,12 +10,19 @@ class TestAppKernel extends Kernel
      */
     public function registerBundles()
     {
-        return array(
+        return [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Symfony\Bundle\TwigBundle\TwigBundle(),
+            new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+
+            new Infinite\FormBundle\InfiniteFormBundle,
 
             new \Origammi\Bundle\BlocksBundle\OrigammiBlocksBundle($this),
-        );
+        ];
     }
 
     /**
