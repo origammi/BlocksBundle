@@ -10,7 +10,7 @@ class TestAppKernel extends Kernel
      */
     public function registerBundles()
     {
-        return [
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
@@ -18,7 +18,6 @@ class TestAppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new \Symfony\Bundle\DebugBundle\DebugBundle(),
 
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Infinite\FormBundle\InfiniteFormBundle,
@@ -26,6 +25,13 @@ class TestAppKernel extends Kernel
 
             new \Origammi\Bundle\BlocksBundle\OrigammiBlocksBundle($this),
         ];
+
+        // sf 2.3 compatibility
+        if (class_exists('\Symfony\Bundle\DebugBundle\DebugBundle')) {
+            $bundles[] = new \Symfony\Bundle\DebugBundle\DebugBundle();
+        }
+
+        return $bundles;
     }
 
     /**
