@@ -12,6 +12,9 @@ abstract class BaseTest extends WebTestCase
      */
     protected $client;
 
+    /**
+     * Prepares DB and fixtures and creates test client.
+     */
     public function setUp()
     {
         $this->loadFixtures([]);

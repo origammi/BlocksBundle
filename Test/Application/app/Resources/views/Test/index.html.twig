@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {{ form(form) }}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="flash-success">
+            <strong>{{ flashMessage }}</strong>
+        </div>
+    {% endfor %}
+
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
 {% endblock %}

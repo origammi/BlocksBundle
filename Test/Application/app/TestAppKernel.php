@@ -18,6 +18,7 @@ class TestAppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
+            new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
 
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Infinite\FormBundle\InfiniteFormBundle,

@@ -5,6 +5,7 @@ namespace Origammi\Bundle\BlocksBundle\Test\Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Origammi\Bundle\BlocksBundle\Annotation as Origammi;
 use Origammi\Bundle\BlocksBundle\Entity\BlockCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class TestPost
@@ -31,6 +32,7 @@ class TestPost
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $title;
 

@@ -14,9 +14,14 @@ framework:
   form:                  ~
   csrf_protection:       ~
   validation:            { enable_annotations: true }
+  profiler:              { only_exceptions: false }
   router:
     resource:            "%kernel.root_dir%/routing.yml"
     strict_requirements: ~
+
+web_profiler:
+  toolbar:             true
+  intercept_redirects: false
 
 twig:
   form:
