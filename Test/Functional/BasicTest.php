@@ -11,7 +11,11 @@ class BasicTest extends BaseTest
     {
         $this->client->request('GET', '/');
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(
+            200,
+            $this->client->getResponse()->getStatusCode(),
+            $this->getErrorFromResponse()
+        );
     }
 
     /**
