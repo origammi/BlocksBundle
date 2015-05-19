@@ -19,6 +19,7 @@
     "infinite-networks/form-bundle": "1.0.*@alpha",
     "Trsteel/ckeditor-bundle": "~1.6",
     "knplabs/doctrine-behaviors": "~1.0",
+    "symfony/monolog-bundle": "~2.4",
 
     "doctrine/orm": "~2.2,>=2.2.3,<2.5",
     "doctrine/dbal": "<2.5",

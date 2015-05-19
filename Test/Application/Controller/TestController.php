@@ -2,6 +2,7 @@
 
 namespace Origammi\Bundle\BlocksBundle\Test\Application\Controller;
 
+use Origammi\Bundle\BlocksBundle\Test\Application\Entity\TestPost;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra;
@@ -25,11 +26,19 @@ class TestController extends Controller
      *
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        $repo = $this->getDoctrine()->getRepository('TestEntities:TestPost');
-        $repo->findAll();
+        $post = new TestPost();
 
-        return new Response('test');
+        $form = $this
+            ->createFormBuilder($post)
+            ->add('title')
+            ->add('blocks', 'origammi_blocks')
+            ->getForm();
+
+        return $this->render(
+            'views/Test/index.html.twig',
+            [ 'form' => $form->createView() ]
+        );
     }
 }

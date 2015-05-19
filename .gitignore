@@ -1,6 +1,7 @@
 vendor/
 bin/
-build/
 composer.lock
 Test/Application/app/tmp
 Test/Application/app/parameters.yml
+Test/Application/web/build
+Test/Application/web/bundles

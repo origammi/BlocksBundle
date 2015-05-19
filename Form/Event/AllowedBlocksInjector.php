@@ -55,6 +55,17 @@ class AllowedBlocksInjector implements EventSubscriberInterface
         $blockCollectionData  = $this->blocksConverter->convert($parentForm->getData());
 
         foreach ($blockCollectionData as $blockCollectionDataProperty) {
+            $allowed = $blockCollectionDataProperty->getAllowed();
+            if (! count($allowed)) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'You should define some allowed blocks on `%s::%s`.',
+                        get_class($parentForm->getData()),
+                        $blockCollectionDataProperty->getPropertyName()
+                    )
+                );
+            }
+
             if ($propertyName === $blockCollectionDataProperty->getPropertyName()) {
                 $event->getForm()->add('blocks', 'infinite_form_polycollection', array(
                     'allow_add'    => true,

@@ -34,7 +34,7 @@
     </php>
 
     <logging>
-        <log type="coverage-html" target="./build/codeCoverage" charset="UTF-8"
+        <log type="coverage-html" target="./Test/Application/web/build/codeCoverage" charset="UTF-8"
              yui="true" highlight="true"
              lowUpperBound="50" highLowerBound="80"/>
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>

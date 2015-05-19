@@ -17,9 +17,12 @@ class TestAppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
-            new Vich\UploaderBundle\VichUploaderBundle(),
+            new Symfony\Bundle\MonologBundle\MonologBundle(),
+            new \Symfony\Bundle\DebugBundle\DebugBundle(),
 
+            new Vich\UploaderBundle\VichUploaderBundle(),
             new Infinite\FormBundle\InfiniteFormBundle,
+            new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
 
             new \Origammi\Bundle\BlocksBundle\OrigammiBlocksBundle($this),
         ];

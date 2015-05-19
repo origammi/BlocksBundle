@@ -1,17 +1,29 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: ../../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
+    - { resource: @OrigammiBlocksBundle/Resources/config/ckeditor.yml }
 
 framework:
-  secret: %secret%
-  test:   ~
+  translator:            { fallbacks: ["%locale%"] }
+  secret:                %secret%
+  test:                  ~
   session:
-    storage_id: session.storage.filesystem
+    storage_id:          session.storage.filesystem
   templating:
-    engines: ['twig']
-  validation: { enable_annotations: true }
+    engines:             ['twig']
+  form:                  ~
+  csrf_protection:       ~
+  validation:            { enable_annotations: true }
   router:
     resource:            "%kernel.root_dir%/routing.yml"
     strict_requirements: ~
+
+twig:
+  form:
+    resources:
+      - 'InfiniteFormBundle::form_theme.html.twig'
+      - 'OrigammiBlocksBundle:Form:fields.html.twig'
+
 
 liip_functional_test: ~
 

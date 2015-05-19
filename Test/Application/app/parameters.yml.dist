@@ -7,3 +7,4 @@ parameters:
   database_user:     root
   database_password: ~
   database_path:     %kernel.cache_dir%/%database_name%.sqlite
+  locale:            en
