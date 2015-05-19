@@ -18,6 +18,10 @@
                 <source>origammi_block_image</source>
                 <target>Bild</target>
             </trans-unit>
+            <trans-unit id="origammi_block_video">
+                <source>origammi_block_video</source>
+                <target>Video</target>
+            </trans-unit>
             <trans-unit id="Caption">
                 <source>Caption</source>
                 <target>Legende</target>
