@@ -82,5 +82,11 @@
 
             <tag name="origammi_blocks.block" />
         </service>
+        <service
+                id="origammi_blocks.form.block.video"
+                class="Origammi\Bundle\BlocksBundle\Form\Block\VideoType">
+
+            <tag name="origammi_blocks.block" />
+        </service>
     </services>
 </container>

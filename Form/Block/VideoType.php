@@ -2,20 +2,18 @@
 
 namespace Origammi\Bundle\BlocksBundle\Form\Block;
 
+use Origammi\Bundle\BlocksBundle\Entity\Block\Video;
+use Origammi\Bundle\BlocksBundle\Form\BlockType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-use JMS\DiExtraBundle\Annotation as DI;
-
 /**
- * Class BlockInfoType
+ * Class BlockVideoType
  *
  * @package   Origammi\Bundle\BlocksBundle\Form\Block
  * @author    Matej Velikonja <mvelikonja@astina.ch>
  * @copyright 2014 Astina AG (http://astina.ch)
- *
- * @DI\FormType
  */
-class BlockInfoType extends BlockType
+class VideoType extends BlockType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -25,7 +23,14 @@ class BlockInfoType extends BlockType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('rows', 'info_row_collection');
+        $builder
+            ->add('caption')
+            ->add('provider', 'hidden', [
+                'data' => Video::PROVIDER_YOUTUBE
+            ])
+            ->add('externalId', 'text', [
+                'required' => false
+            ]);
     }
 
     /**
@@ -33,14 +38,14 @@ class BlockInfoType extends BlockType
      */
     public function getDataClass()
     {
-        return 'AppBundle\Entity\Block\Info';
+        return 'Origammi\Bundle\BlocksBundle\Entity\Block\Video';
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockName()
     {
-        return 'type_block_info';
+        return 'video';
     }
 }

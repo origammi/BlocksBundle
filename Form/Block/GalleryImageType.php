@@ -5,19 +5,16 @@ namespace Origammi\Bundle\BlocksBundle\Form\Block\Block;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class BlockGalleryImageType
+ * Class GalleryImageType
  *
  * @package   Origammi\Bundle\BlocksBundle\Form\Block
  * @author    Matej Velikonja <mvelikonja@astina.ch>
  * @copyright 2014 Astina AG (http://astina.ch)
- *
- * @DI\FormType
  */
-class BlockGalleryImageType extends AbstractType
+class GalleryImageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder

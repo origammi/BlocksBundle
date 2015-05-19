@@ -2,9 +2,8 @@
 
 namespace Origammi\Bundle\BlocksBundle\Form\Block;
 
+use Origammi\Bundle\BlocksBundle\Form\BlockType;
 use Symfony\Component\Form\FormBuilderInterface;
-
-use JMS\DiExtraBundle\Annotation as DI;
 
 /**
  * Class BlockImageType
@@ -12,8 +11,6 @@ use JMS\DiExtraBundle\Annotation as DI;
  * @package   Origammi\Bundle\BlocksBundle\Form\Block
  * @author    Jure Zitnik <jzitnik@astina.ch>
  * @copyright 2014 Astina AG (http://astina.ch)
- *
- * @DI\FormType
  */
 class BlockGalleryType extends BlockType
 {
@@ -50,8 +47,8 @@ class BlockGalleryType extends BlockType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockName()
     {
-        return 'type_block_gallery';
+        return 'gallery';
     }
 }
