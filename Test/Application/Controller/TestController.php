@@ -46,9 +46,11 @@ class TestController extends Controller
             $post = $form->getData();
             $this->getDoctrine()->getManager()->persist($post);
             $this->getDoctrine()->getManager()->flush($post);
-            $this->addFlash('success', 'Post saved!');
+            $this->get('session')->getFlashBag()->add('success', 'Post saved!');
 
-            return $this->redirectToRoute('test_index');
+            return $this->redirect(
+                $this->generateUrl('test_index')
+            );
         }
 
         return $this->render(
