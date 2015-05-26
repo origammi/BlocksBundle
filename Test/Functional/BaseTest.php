@@ -6,7 +6,6 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,13 +17,22 @@ abstract class BaseTest extends WebTestCase
     protected $client;
 
     /**
+     * @var string
+     */
+    protected $uploadDir;
+
+    /**
      * Prepares DB and fixtures and creates test client.
      */
     public function setUp()
     {
         $this->loadFixtures([]);
 
-        $this->client = static::createClient();
+        $this->client    = static::createClient();
+        $this->uploadDir = self::$kernel->getCacheDir() . '/block_images';
+
+        $fs = new Filesystem();
+        $fs->mkdir($this->uploadDir);
     }
 
     /**
@@ -32,12 +40,9 @@ abstract class BaseTest extends WebTestCase
      */
     public function tearDown()
     {
-        $uploadedImagesDir = self::$kernel->getCacheDir() . '/block_images';
-        $finder            = new Finder();
-        $fs                = new Filesystem();
+        $fs = new Filesystem();
 
-        $finder->in($uploadedImagesDir);
-        $fs->remove($finder);
+        $fs->remove($this->uploadDir);
 
         parent::tearDown();
     }
