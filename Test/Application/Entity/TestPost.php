@@ -41,7 +41,7 @@ class TestPost
      *
      * @ORM\ManyToOne(targetEntity="Origammi\Bundle\BlocksBundle\Entity\BlockCollection", cascade={"remove", "persist"})
      * @Origammi\BlockCollectionData(
-     *  defaults={"lead", "text"},
+     *  defaults={"lead", "text", "image", "text", "video"},
      *  allowed={"lead", "text", "image", "quote", "video"},
      *  required={"lead"}
      * )

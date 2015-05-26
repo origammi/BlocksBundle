@@ -33,6 +33,15 @@ liip_functional_test: ~
 
 vich_uploader:
     db_driver: orm # or mongodb or propel or phpcr
+#    storage: file_system
+    mappings:
+        block_image:
+#            uri_prefix:         "%kernel.cache_dir%%/images"
+            upload_destination: "%kernel.cache_dir%/block_images"
+#            namer:              website.helper.vich.filenamer
+#            inject_on_load:     true
+            delete_on_remove:   true
+            delete_on_update:   true
 
 doctrine:
   dbal:

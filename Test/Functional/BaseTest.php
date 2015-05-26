@@ -5,6 +5,9 @@ namespace Origammi\Bundle\BlocksBundle\Test\Functional;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class BaseTest extends WebTestCase
@@ -22,6 +25,21 @@ abstract class BaseTest extends WebTestCase
         $this->loadFixtures([]);
 
         $this->client = static::createClient();
+    }
+
+    /**
+     * Cleans up after each test.
+     */
+    public function tearDown()
+    {
+        $uploadedImagesDir = self::$kernel->getCacheDir() . '/block_images';
+        $finder            = new Finder();
+        $fs                = new Filesystem();
+
+        $finder->in($uploadedImagesDir);
+        $fs->remove($finder);
+
+        parent::tearDown();
     }
 
     /**
@@ -50,14 +68,29 @@ abstract class BaseTest extends WebTestCase
             $errors .= 'Page title: ' . $title . PHP_EOL;
         }
 
-        if ($crawler->filter('.form-errors')->count()) {
-            // Let's try to get form errors
-            $formErrors = $crawler->filter('.form-errors')->children();
-            foreach ($formErrors as $formError) {
-                $errors .= '* ' . $formError->textContent . PHP_EOL;
-            }
+        return $errors;
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    protected function getTestUploadImage()
+    {
+        $dir       = self::$kernel->getRootDir() . '/data';
+        $imagePath = $dir . '/logo.jpg';
+
+        if (! file_exists($imagePath)) {
+            throw new \LogicException(
+                sprintf('Image `%s` does not exists.', $imagePath)
+            );
         }
 
-        return $errors;
+        $image = new UploadedFile(
+            $imagePath ,
+            basename($imagePath),
+            'image/jpeg'
+        );
+
+        return $image;
     }
 }

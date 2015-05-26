@@ -4,6 +4,7 @@ namespace Origammi\Bundle\BlocksBundle\Entity\Block;
 
 use Origammi\Bundle\BlocksBundle\Entity\Block;
 use Doctrine\ORM\Mapping as ORM;
+use Origammi\Bundle\BlocksBundle\Util\ReflectionHelper;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
