@@ -8,3 +8,4 @@ parameters:
   database_password: ~
   database_path:     %kernel.cache_dir%/%database_name%.sqlite
   locale:            en
+  upload_dir:        %kernel.cache_dir%/upload

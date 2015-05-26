@@ -29,7 +29,7 @@ abstract class BaseTest extends WebTestCase
         $this->loadFixtures([]);
 
         $this->client    = static::createClient();
-        $this->uploadDir = self::$kernel->getCacheDir() . '/block_images';
+        $this->uploadDir = $this->getContainer()->getParameter('upload_dir');
 
         $fs = new Filesystem();
         $fs->mkdir($this->uploadDir);
