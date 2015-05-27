@@ -36,6 +36,21 @@ class TestController extends Controller
     }
 
     /**
+     * @Extra\Route("/{id}", name="test_show", requirements={"id": "\d+"})
+     *
+     * @param TestPost $post
+     *
+     * @return Response
+     */
+    public function showAction(TestPost $post)
+    {
+        return $this->render(
+            'views/Test/show.html.twig',
+            [ 'post' => $post ]
+        );
+    }
+
+    /**
      * @Extra\Route("/new", name="test_new")
      *
      * @param Request $request
@@ -46,14 +61,15 @@ class TestController extends Controller
     {
         $post = new TestPost();
 
-        $form = $this->getForm($post, 'test_new');
+        $form = $this->getForm($post, $this->generateUrl('test_new'));
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $post = $form->getData();
+
             $this->getDoctrine()->getManager()->persist($post);
-            $this->getDoctrine()->getManager()->flush($post);
+            $this->getDoctrine()->getManager()->flush();
             $this->get('session')->getFlashBag()->add('success', 'Post saved!');
 
             return $this->redirect(
@@ -77,14 +93,16 @@ class TestController extends Controller
      */
     public function editAction(TestPost $post, Request $request)
     {
-        $form = $this->getForm($post, 'test_edit');
+        $form = $this->getForm($post, $this->generateUrl('test_edit', ['id' => $post->getId()]));
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            /** @var TestPost $post */
             $post = $form->getData();
+
             $this->getDoctrine()->getManager()->persist($post);
-            $this->getDoctrine()->getManager()->flush($post);
+            $this->getDoctrine()->getManager()->flush();
             $this->get('session')->getFlashBag()->add('success', 'Post edited!');
 
             return $this->redirect(
@@ -100,18 +118,18 @@ class TestController extends Controller
 
     /**
      * @param TestPost $post
-     * @param string   $actionRoute
+     * @param string   $url
      *
      * @return Form
      */
-    private function getForm(TestPost $post, $actionRoute)
+    private function getForm(TestPost $post, $url)
     {
         $form = $this
             ->createFormBuilder($post, ['cascade_validation' => true])
             ->add('title')
             ->add('blocks', 'origammi_blocks')
             ->add('save', 'submit')
-            ->setAction($this->generateUrl($actionRoute))
+            ->setAction($url)
             ->getForm();
 
         return $form;

@@ -34,7 +34,7 @@ vich_uploader:
 #    storage: file_system
     mappings:
         block_image:
-#            uri_prefix:         "%kernel.cache_dir%%/images"
+            uri_prefix:         "%upload_uri%/block_images"
             upload_destination: "%upload_dir%/block_images"
 #            namer:              website.helper.vich.filenamer
 #            inject_on_load:     true
