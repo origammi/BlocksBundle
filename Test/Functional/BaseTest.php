@@ -30,19 +30,10 @@ abstract class BaseTest extends WebTestCase
         $this->uploadDir = $this->getContainer()->getParameter('upload_dir');
 
         $fs = new Filesystem();
-        $fs->mkdir($this->uploadDir);
-    }
-
-    /**
-     * Cleans up after each test.
-     */
-    public function tearDown()
-    {
-        $fs = new Filesystem();
-
+        // clean up
         $fs->remove($this->uploadDir);
-
-        parent::tearDown();
+        // then recreate directory
+        $fs->mkdir($this->uploadDir);
     }
 
     /**
