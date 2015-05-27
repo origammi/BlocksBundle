@@ -73,4 +73,40 @@ class BasicTest extends BaseTest
 
         $this->assertEquals(1, $crawler->filter('.flash-success')->count(), 'Flash message not found.');
     }
+
+    /**
+     * @param int         $position
+     * @param string      $type
+     * @param string|null $content
+     *
+     * @depends testSimpleEditOfPost
+     * @dataProvider testPostShowDataProvider
+     */
+    public function testPostShow($position, $type, $content = null)
+    {
+        $crawler    = $this->client->request('GET', '/1');
+        $blockNodes = $crawler->filter('.block');
+        $node       = $blockNodes->eq($position);
+        $class      = $node->attr('class');
+
+        $this->assertEquals('block block-' . $type, $class, 'Wrong block classes found.');
+
+        if ($content) {
+            $this->assertEquals($content, trim($node->filter('p')->text()), 'Invalid content found.');
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function testPostShowDataProvider()
+    {
+        return [
+            [0, 'lead', 'Origammi\Bundle\BlocksBundle\Test\Functional\BasicTest::testSimpleEditOfPost'],
+            [1, 'text', 'Origammi\Bundle\BlocksBundle\Test\Functional\BasicTest::testSimpleEditOfPost'],
+            [2, 'image'],
+            [3, 'text', 'Origammi\Bundle\BlocksBundle\Test\Functional\BasicTest::testSimpleEditOfPost'],
+            [4, 'video'],
+        ];
+    }
 }

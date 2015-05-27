@@ -3,19 +3,21 @@
 {% block content %}
     <h1>{{ post.title }}</h1>
 
-    <ul>
+    <ul class="blocks">
         {% for block in post.blocks %}
-            <li class="block-{{ block.type }}">
+            <li class="block block-{{ block.type }}">
                 <strong>{{ block.type }}</strong>:
-                {% if block.type == 'image' %}
-                    <img src="{{ vich_uploader_asset(block, 'image') }}" alt="{{ block.caption }}" title="{{ block.caption }}"/>
-                {% elseif block.type == 'video' %}
-                    <iframe id="ytplayer" type="text/html" width="640" height="390"
-                            src="http://www.youtube.com/embed/{{ block.externalId }}"
-                            frameborder="0"/>
-                {% else %}
-                    {{ block.text }}
-                {% endif %}
+                <p>
+                    {% if block.type == 'image' %}
+                        <img src="{{ vich_uploader_asset(block, 'image') }}" alt="{{ block.caption }}" title="{{ block.caption }}"/>
+                    {% elseif block.type == 'video' %}
+                        <iframe id="ytplayer" type="text/html" width="640" height="390"
+                                src="http://www.youtube.com/embed/{{ block.externalId }}"
+                                frameborder="0"/>
+                    {% else %}
+                        {{ block.text }}
+                    {% endif %}
+                </p>
             </li>
         {% endfor %}
     </ul>
