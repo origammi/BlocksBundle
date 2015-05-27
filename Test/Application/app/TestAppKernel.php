@@ -16,7 +16,6 @@ class TestAppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
 

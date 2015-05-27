@@ -29,8 +29,6 @@ twig:
       - 'InfiniteFormBundle::form_theme.html.twig'
       - 'OrigammiBlocksBundle:Form:fields.html.twig'
 
-liip_functional_test: ~
-
 vich_uploader:
     db_driver: orm # or mongodb or propel or phpcr
 #    storage: file_system

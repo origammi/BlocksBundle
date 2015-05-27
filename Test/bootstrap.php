@@ -1,6 +1,12 @@
 <?php
 
+use Doctrine\Bundle\DoctrineBundle\Command\CreateDatabaseDoctrineCommand;
+use Doctrine\Bundle\DoctrineBundle\Command\DropDatabaseDoctrineCommand;
+use Doctrine\Bundle\DoctrineBundle\Command\Proxy\CreateSchemaDoctrineCommand;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 $file = __DIR__ . '/../vendor/autoload.php';
 
@@ -9,6 +15,8 @@ if (! file_exists($file)) {
 }
 
 $loader = require $file;
+require_once __DIR__ . '/Application/app/TestAppKernel.php';
+
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
@@ -21,6 +29,36 @@ new \Origammi\Bundle\BlocksBundle\Annotation\BlockCollectionData([]);
 
 if (! file_exists($params) || filemtime($paramsDist) > filemtime($params)) {
     copy($paramsDist, $params);
+}
+
+if (isset($_SERVER['CREATE_DB']) && $_SERVER['CREATE_DB']) {
+    $kernel = new TestAppKernel('test', true);
+    $kernel->boot();
+
+    $application = new Application($kernel);
+    $output      = new ConsoleOutput();
+
+    $command = new DropDatabaseDoctrineCommand();
+    $application->add($command);
+    $input = new ArrayInput(array(
+        'command' => 'doctrine:database:drop',
+        '--force' => true,
+    ));
+    $command->run($input, $output);
+
+    $command = new CreateDatabaseDoctrineCommand();
+    $application->add($command);
+    $input = new ArrayInput([
+        'command' => 'doctrine:database:create',
+    ]);
+    $command->run($input, $output);
+
+    $command = new CreateSchemaDoctrineCommand();
+    $application->add($command);
+    $input = new ArrayInput([
+        'command' => 'doctrine:schema:create',
+    ]);
+    $command->run($input, $output);
 }
 
 return $loader;

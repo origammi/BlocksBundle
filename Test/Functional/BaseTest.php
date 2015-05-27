@@ -2,7 +2,7 @@
 
 namespace Origammi\Bundle\BlocksBundle\Test\Functional;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
@@ -26,8 +26,6 @@ abstract class BaseTest extends WebTestCase
      */
     public function setUp()
     {
-        $this->loadFixtures([]);
-
         $this->client    = static::createClient();
         $this->uploadDir = $this->getContainer()->getParameter('upload_dir');
 
@@ -97,5 +95,13 @@ abstract class BaseTest extends WebTestCase
         );
 
         return $image;
+    }
+
+    /**
+     * @return \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    protected function getContainer()
+    {
+        return $this->client->getContainer();
     }
 }

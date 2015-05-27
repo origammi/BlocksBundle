@@ -25,7 +25,7 @@ class BasicTest extends BaseTest
      */
     public function testSimpleSaveOfPost()
     {
-        $crawler = $this->client->request('GET', '/');
+        $crawler = $this->client->request('GET', '/new');
         $form    = $crawler->selectButton('Save')->form();
 
         $this->client->submit($form, [

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Post list</h1>
+    <a href="{{ path('test_new') }}">Add new</a>
+    <ul>
+        {% for post in posts %}
+            <li>
+                {{ post.title }}
+                <a href="{{ path('test_edit', {id: post.id}) }}">Edit</a>
+            </li>
+        {% else %}
+            <li>No posts!</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
