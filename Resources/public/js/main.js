@@ -9,6 +9,8 @@ var blocksBundle = {
 
         this.$('body').on('click', '.remove-block', this.removeBlock.bind(this));
         addBlockDropDowns.on('change', this.addBlock.bind(this));
+
+        this.sortable.init(jQuery);
     },
 
     removeBlock: function(e) {
@@ -32,6 +34,48 @@ var blocksBundle = {
 
         // reset dropdown
         dropDown.prop('selectedIndex', 0);
+    },
+
+    sortable: {
+        $: null,
+        unloadedEditors: {},
+
+        init: function(jQuery) {
+            this.$ = jQuery;
+
+            this.$('.blocks').sortable({
+                handle: '.block-name'
+            })
+                .on('sortstart', this.unloadEditors.bind(this))
+                .on('sortstop', this.loadEditors.bind(this))
+        },
+
+        unloadEditors: function(e) {
+            var editors = this.$(e.toElement).closest('.block').find('.cke');
+            var that = this;
+
+            editors.each(function() {
+                var editorID = that.$(this).prev().attr("id");
+                var instance = CKEDITOR.instances[editorID];
+
+                if (instance) {
+                    that.$(this).prev().val(instance.getData());
+                    that.unloadedEditors[editorID] = instance.rawConfig;
+                    instance.destroy(true);
+                }
+            });
+        },
+
+        loadEditors: function() {
+            this.$.each(this.unloadedEditors, function(editorID, config) {
+                if(! CKEDITOR.instances[editorID]) {
+                    CKEDITOR.replace(editorID, config);
+                    CKEDITOR.instances[editorID].rawConfig = config;
+                }
+            });
+
+            this.unloadedEditors = {};
+        }
     }
 };
 

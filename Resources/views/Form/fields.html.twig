@@ -2,7 +2,7 @@
 
 {% block origammi_block_default_widget %}
     <div class="block">
-        <strong class="{{ form.vars.required ? 'required' }}">
+        <strong class="block-name {{ form.vars.required ? 'required' }}">
             {{ form.vars.block_prefixes[2] | trans }}
         </strong>
         <a href="javascript:void(0);" class="remove-block">
