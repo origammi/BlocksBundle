@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @author    Jure Zitnik <jzitnik@astina.ch>
  * @copyright 2014 Astina AG (http://astina.ch)
  */
-class BlockGalleryType extends BlockType
+class GalleryType extends BlockType
 {
     /**
      * @param FormBuilderInterface $builder

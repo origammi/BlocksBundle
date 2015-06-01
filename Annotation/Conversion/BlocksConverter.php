@@ -47,5 +47,4 @@ class BlocksConverter
 
         return $annotations;
     }
-
 }

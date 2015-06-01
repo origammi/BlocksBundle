@@ -5,8 +5,6 @@ namespace Origammi\Bundle\BlocksBundle\Form\Block;
 use Origammi\Bundle\BlocksBundle\Form\BlockType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-use JMS\DiExtraBundle\Annotation as DI;
-
 /**
  * Class QuoteType
  *

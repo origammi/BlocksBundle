@@ -5,16 +5,12 @@ namespace Origammi\Bundle\BlocksBundle\Form\Block;
 use Origammi\Bundle\BlocksBundle\Form\BlockType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-use JMS\DiExtraBundle\Annotation as DI;
-
 /**
  * Class ImageType
  *
  * @package   Origammi\Bundle\BlocksBundle\Form\Block
  * @author    Matej Velikonja <mvelikonja@astina.ch>
  * @copyright 2014 Astina AG (http://astina.ch)
- *
- * @DI\FormType
  */
 class ImageType extends BlockType
 {

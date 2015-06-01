@@ -52,7 +52,7 @@ abstract class BlockType extends AbstractType
     /**
      * @return string
      */
-    public final function getName()
+    final public function getName()
     {
         return self::BLOCK_PREFIX . $this->getBlockName();
     }

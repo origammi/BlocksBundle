@@ -1,6 +1,7 @@
 <?php
 
 namespace Origammi\Bundle\BlocksBundle\Exception;
+
 use Origammi\Bundle\BlocksBundle\Form\BlockType;
 
 /**

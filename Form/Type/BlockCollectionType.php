@@ -50,7 +50,7 @@ class BlockCollectionType extends AbstractType
         BlocksContainer $blocksContainer,
         AllowedBlocksInjector $allowedBlocksInjector,
         BlockSorter $blockSorter
-    ){
+    ) {
         $this->blockPopulator        = $blockListener;
         $this->blocksContainer       = $blocksContainer;
         $this->allowedBlocksInjector = $allowedBlocksInjector;

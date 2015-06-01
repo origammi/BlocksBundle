@@ -80,7 +80,7 @@ abstract class BaseTest extends WebTestCase
         }
 
         $image = new UploadedFile(
-            $imagePath ,
+            $imagePath,
             basename($imagePath),
             'image/jpeg'
         );
