@@ -3,7 +3,6 @@
 namespace Origammi\Bundle\BlocksBundle\Form\Event;
 
 use Origammi\Bundle\BlocksBundle\Entity\Block;
-use Origammi\Bundle\BlocksBundle\Entity\BlockCollection;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -20,24 +19,23 @@ class BlockSorter implements EventSubscriberInterface
     /**
      * @param FormEvent $event
      */
-    public function onSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event)
     {
         $collection = $event->getData();
         $sort       = 10;
         $step       = 10;
 
-        if (! $collection instanceof BlockCollection) {
+        if (! isset($collection['blocks'])) {
             return;
         }
 
-        foreach ($collection->getBlocks() as $block) {
-            $block->setSort(null);
-
-            if (! $block->isEmpty()) {
-                $block->setSort($sort);
-
-                $sort += $step;
+        foreach ($collection['blocks'] as &$block) {
+            if (! isset($block['sort'])) {
+                throw new \LogicException(sprintf('Block `%s` does not have a sort field.', $block['_type']));
             }
+
+            $block['sort'] = $sort;
+            $sort += $step;
         }
     }
 
@@ -51,7 +49,7 @@ class BlockSorter implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            FormEvents::SUBMIT => 'onSubmit',
+            FormEvents::PRE_SUBMIT=> 'preSubmit',
         ];
     }
 }
