@@ -38,6 +38,10 @@
                 <source>add.block</source>
                 <target>Add block</target>
             </trans-unit>
+            <trans-unit id="remove.block">
+                <source>remove.block</source>
+                <target>Remove block</target>
+            </trans-unit>
             <trans-unit id="select">
                 <source>select</source>
                 <target>Select...</target>

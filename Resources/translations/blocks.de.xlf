@@ -34,6 +34,10 @@
                 <source>Blocks</source>
                 <target>Blöcke</target>
             </trans-unit>
+            <trans-unit id="remove.block">
+                <source>remove.block</source>
+                <target>Block entfernen</target>
+            </trans-unit>
             <trans-unit id="add.block">
                 <source>add.block</source>
                 <target>Block hinzufügen</target>
