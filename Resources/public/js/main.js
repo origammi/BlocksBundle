@@ -51,7 +51,7 @@ var blocksBundle = {
             .on('sortstart', this.startSorting.bind(this))
             .on('sortstop', this.loadEditors.bind(this))
             .on('sortstop', this.stopSorting.bind(this))
-            .on('sort', this.sortPositioningCorretions.bind(this));
+            .on('sort', this.sortPositioningCorrections.bind(this));
 
             $('.block-name').hover(function() {
                 $(this).parent().addClass('ui-can-sort');
@@ -103,7 +103,7 @@ var blocksBundle = {
             $('.blocks').removeClass('ui-sorting');
         },
 
-        sortPositioningCorretions: function(event, ui) {
+        sortPositioningCorrections: function(event, ui) {
             // hack for repositioning sortable helper element
             var helper = $('.ui-sortable-helper');
             var of = helper.parent().offset();
