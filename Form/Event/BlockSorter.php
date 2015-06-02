@@ -37,6 +37,9 @@ class BlockSorter implements EventSubscriberInterface
             $block['sort'] = $sort;
             $sort += $step;
         }
+
+        // set back data, since we are using array which is not passed by reference
+        $event->setData($collection);
     }
 
     /**
