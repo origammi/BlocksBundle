@@ -44,10 +44,20 @@ var blocksBundle = {
             this.$ = jQuery;
 
             this.$('.blocks').sortable({
-                handle: '.block-name'
+                handle: '.block-name',
+                helper: "clone",
             })
-                .on('sortstart', this.unloadEditors.bind(this))
-                .on('sortstop', this.loadEditors.bind(this))
+            .on('sortstart', this.unloadEditors.bind(this))
+            .on('sortstart', this.startSorting.bind(this))
+            .on('sortstop', this.loadEditors.bind(this))
+            .on('sortstop', this.stopSorting.bind(this))
+            .on('sort', this.sortPositioningCorretions.bind(this));
+
+            $('.block-name').hover(function() {
+                $(this).parent().addClass('ui-can-sort');
+            },function() {
+                $(this).parent().removeClass('ui-can-sort');
+            });
         },
 
         unloadEditors: function(e) {
@@ -75,6 +85,32 @@ var blocksBundle = {
             });
 
             this.unloadedEditors = {};
+        },
+
+        startSorting: function(e) {
+            var allEditors = this.$(e.toElement).closest('.blocks').find('.cke').css('position','relative');
+            allEditors.append('<div class="cke-overlay" style="position:absolute; left:0; top:0; width:100%; height:100%;"></div>');
+
+            // add sorting class when sorting starts
+            $('.blocks').addClass('ui-sorting');
+        },
+        
+        stopSorting: function() {
+            
+            $('.cke-overlay').remove();
+
+            // remove sorting class when sorting ends
+            $('.blocks').removeClass('ui-sorting');
+        },
+
+        sortPositioningCorretions: function(event, ui) {
+            // hack for repositioning sortable helper element
+            var helper = $('.ui-sortable-helper');
+            var of = helper.parent().offset();
+            helper.css({
+                left: (event.pageX - of.left) + 'px',
+                top: (event.pageY - of.top) + 'px'
+            });
         }
     }
 };
