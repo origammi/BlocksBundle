@@ -3,7 +3,6 @@
 use Doctrine\Bundle\DoctrineBundle\Command\CreateDatabaseDoctrineCommand;
 use Doctrine\Bundle\DoctrineBundle\Command\DropDatabaseDoctrineCommand;
 use Doctrine\Bundle\DoctrineBundle\Command\Proxy\CreateSchemaDoctrineCommand;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -17,15 +16,9 @@ if (! file_exists($file)) {
 $loader = require $file;
 require_once __DIR__ . '/Application/app/TestAppKernel.php';
 
-
-AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
-
 // copy dist parameters to yml if does not exists or it's newer.
 $params     = __DIR__ . '/Application/app/parameters.yml';
 $paramsDist = __DIR__ . '/Application/app/parameters.yml.dist';
-
-// TODO: I had to add this here, otherwise it's not loaded. Could not figure out why, yet.
-new \Origammi\Bundle\BlocksBundle\Annotation\BlockCollectionData([]);
 
 if (! file_exists($params) || filemtime($paramsDist) > filemtime($params)) {
     copy($paramsDist, $params);

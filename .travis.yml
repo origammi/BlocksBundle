@@ -4,28 +4,33 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - nightly
   - hhvm
 
 env:
-    - SYMFONY_VERSION="2.3.*"
-    - SYMFONY_VERSION="2.6.*"
-    - SYMFONY_VERSION="2.7.*"
-    - SYMFONY_VERSION="2.8.x-dev"
-    - SYMFONY_VERSION="3.0.x-dev"
+  global:
+    - SYMFONY_DEPRECATIONS_HELPER=weak
 
 matrix:
   fast_finish: true
+  include:
+    - php: 5.4
+      env: deps="low"
+    - php: 5.5
+      env: SYMFONY_VERSION="~2.3" SYMFONY_DEPRECATIONS_HELPER=strict
+    - php: 5.5
+      env: SYMFONY_VERSION="~2.7.0"
+    - php: 5.5
+      env: SYMFONY_VERSION="3.0.x-dev as 2.8"
   allow_failures:
-    - php: hhvm
-    - env: SYMFONY_VERSION="2.8.x-dev"
-    - env: SYMFONY_VERSION="3.0.x-dev"
+    - php: nightly
+    - env: SYMFONY_VERSION="3.0.x-dev as 2.8"
 
 before_script:
     - composer self-update # Update composer as travis is not updating it.
-    - >
-        composer require --dev \
-          symfony/symfony:${SYMFONY_VERSION}
-    - phpenv rehash
+    - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony=$SYMFONY_VERSION; fi
+    - if [ "$deps" = "low" ]; then composer update --prefer-lowest; fi
+    - if [ "$deps" != "low" ]; then composer update; fi
 
 script:
   - bin/phpunit --coverage-clover=coverage.clover -d zend.enable_gc=0
