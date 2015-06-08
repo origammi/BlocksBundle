@@ -17,14 +17,14 @@ matrix:
     - php: 5.4
       env: deps="low"
     - php: 5.5
-      env: SYMFONY_VERSION="~2.3" SYMFONY_DEPRECATIONS_HELPER=strict
+      env: SYMFONY_VERSION="~2.3.0" SYMFONY_DEPRECATIONS_HELPER=strict
     - php: 5.5
       env: SYMFONY_VERSION="~2.7.0"
     - php: 5.5
-      env: SYMFONY_VERSION="3.0.x-dev as 2.8"
+      env: SYMFONY_VERSION="3.0.x-dev as 2.7"
   allow_failures:
     - php: nightly
-    - env: SYMFONY_VERSION="3.0.x-dev as 2.8"
+    - env: SYMFONY_VERSION="3.0.x-dev as 2.7"
 
 before_script:
     - composer self-update # Update composer as travis is not updating it.
