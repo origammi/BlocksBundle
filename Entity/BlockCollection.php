@@ -217,4 +217,25 @@ class BlockCollection implements \ArrayAccess, \IteratorAggregate
     {
         return $this->blocks->getIterator();
     }
+
+    /**
+     * Clone object.
+     */
+    public function __clone()
+    {
+        if ($this->id) {
+            $this->id        = null;
+            $this->createdAt = null;
+            $this->updatedAt = null;
+            $blocks          = $this->blocks;
+            $this->blocks    = new ArrayCollection();
+
+            foreach ($blocks as $block) {
+                $clonedBlock = clone ($block);
+                $clonedBlock->setCollection($this);
+
+                $this->blocks->add($clonedBlock);
+            }
+        }
+    }
 }

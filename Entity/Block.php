@@ -103,4 +103,16 @@ abstract class Block implements BlockInterface
 
         return $this;
     }
+
+    /**
+     * Clone object.
+     */
+    public function __clone()
+    {
+        if ($this->id) {
+            $this->id        = null;
+            $this->createdAt = null;
+            $this->updatedAt = null;
+        }
+    }
 }
